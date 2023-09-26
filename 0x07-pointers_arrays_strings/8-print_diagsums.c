@@ -23,7 +23,7 @@ void print_diagsums(int *a, int size)
 
 	for (diag = size - 1; diag >= 0; diag--)
 	{
-		diag2_sum = diag2_sum a[diag * size + (size - diag - 1)];
+		diag2_sum = diag2_sum + a[diag * size + (size - diag - 1)];
 	}
 
 	printf("%d, %d\n", diag1_sum, diag2_sum);
