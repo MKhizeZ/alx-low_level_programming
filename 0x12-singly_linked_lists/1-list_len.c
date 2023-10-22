@@ -9,13 +9,12 @@
  */
 size_t list_len(const list_t *h)
 {
-    size_t Elem_Count = 0;
- 
-    for (; h; h = h->next)
-    {
-       /*increment for list element*/
-       Elem_Count++;
-    }
- 
-    return Elem_Count;
+	size_t Elem_Count = 0;
+
+	for (; h; h = h->next)
+	{
+		/*increment for list element*/
+		Elem_Count++;
+	}
+	return (Elem_Count);
 }
