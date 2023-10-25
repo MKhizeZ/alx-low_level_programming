@@ -10,6 +10,7 @@
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
 	/* Allocate memory for the new node*/
+	listint_t *temp_node = *head;
 	listint_t *created_new_node = malloc(sizeof(listint_t));
 
 	if (!created_new_node)
@@ -30,7 +31,6 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 	}
 
 	/* Traverse the linked list to find the last node*/
-	listint_t *temp_node = *head;
 
 	while (temp_node->next)
 	{
