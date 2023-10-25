@@ -8,13 +8,13 @@
  */
 int pop_listint(listint_t **head)
 {
+	listint_t *Hold = (*head)->next;
+	int Count = (*head)->n;
+
 	if (!head || !*head)
 	{
 		return (0);
 	}
-
-	int Count = (*head)->n;
-	listint_t *Hold = (*head)->next;
 
 	free(*head);
 	*head = Hold;
