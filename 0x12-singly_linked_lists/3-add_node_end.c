@@ -11,33 +11,30 @@
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-    list_t *new_node = malloc(sizeof(list_t));
+	list_t *store = *head;
+	list_t *new_node = malloc(sizeof(list_t));
+	/*Check if memory allocation was successful. If not, return NULL*/
+	if (!new_node)
+	{
+		return (NULL);
+	}
+	new_node->str = strdup(str);
+	new_node->len = strlen(str);
+	new_node->next = NULL;
 
-    /*Check if memory allocation was successful. If not, return NULL*/
-    if (!new_node)
-    {
-	    return NULL;
-    }
- 
-    new_node->str = strdup(str);
-    new_node->len = strlen(str);
-    new_node->next = NULL;
- 
-    /*checks if the head pointer is NULL, assign the new node to head and return the new node*/
-    if (*head == NULL)
-    {
-        *head = new_node;
-        return new_node;
-    }
- 
-    /*Checks the linked list using store until the last node is reached*/
-    list_t *store = *head;
-    while (store->next)
-    {
-	    store = store->next;
-    }
- 
-    store->next = new_node;
- 
-    return new_node;
+	/* checks if the head pointer is NULL,*/
+	/* assign the new node to head and return the new node*/
+	if (*head == NULL)
+	{
+		*head = new_node;
+		return (new_node);
+	}
+
+	/*Checks the linked list using store until the last node is reached*/
+	while (store->next)
+	{
+		store = store->next;
+	}
+	store->next = new_node;
+	return (new_node);
 }
