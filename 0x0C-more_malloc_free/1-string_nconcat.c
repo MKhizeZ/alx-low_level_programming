@@ -1,57 +1,53 @@
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
 
 /**
- * *string_nconcat - concatenates strings
- * @s1: string to append to
- * @s2: string to concatenate from
- * @n: number of bytes to concatenate
+ * string_nconcat - Concatenates two strings up to n chars from second string.
+ * @s1: The first string.
+ * @s2: The second string.
+ * @n: The maximum number of characters to concatenate from s2.
  *
- * Return: pointer to new string
+ * Return: Pointer to the concatenated string on sucess
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int iter = 0, str1_len = 0, str2_len = 0 count = 0;
-	char *str;
+	char *conc_str;
+	unsigned int str_len1 = 0, str_len2 = 0, iter = 0;
 
-	while (s1 && s1[str1_len])
+	if (s1 != NULL)
 	{
-		str1_len++;
-	}
-	while (s2 && s2[str2_len])
-	{
-		str2_len++;
-	}
-
-	if (n < str2_len)
-	{
-		str = malloc(sizeof(char) * (str1_len + n + 1));
-	}
-	else
-	{
-		str = malloc(sizeof(char) * (str1_len + str2_len + 1));
+		while (s1[str_len1] != '\0')
+		{
+			str_len1++;
+		}
 	}
 
-	if (!str)
+	if (s2 != NULL)
 	{
+		while (s2[str_len2] != '\0')
+		{
+			str_len2++;
+		}
+	}
+
+	if (str_len2 > n)
+	{
+		str_len2 = n;
+	}
+
+	conc_str = malloc(sizeof(char) * (str_len1 + str_len2 + 1));
+	if (conc_str == NULL)
 		return (NULL);
-	}
 
-	for (iter =0; iter < str1_len; iter++)
+	for (iter = 0; iter < str_len1; iter++)
 	{
-		str[iter] = s1[iter];
+		conc_str[iter] = s1[iter];
 	}
 
-	while (n < str2_len2&& iter < (str1_len + n))
+	for (iter = 0; iter < str_len2; iter++)
 	{
-		str[iter++] = s2[count++];
+		conc_str[iter + str_len1] = s2[iter];
 	}
-
-	while (n >= str2_len && iter < (str1_len + str2_len))
-	{
-		str[iter++] = s2[count++];
-	}
-	str[iter] = '\0';
-
-	return (str);
+	conc_str[str_len1 + str_len2] = '\0';
+	return (conc_str);
 }
